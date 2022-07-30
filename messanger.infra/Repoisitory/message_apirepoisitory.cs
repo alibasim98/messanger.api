@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using messanger.core.Data;
 using messanger.core.domain;
+using messanger.core.Dto;
 using messanger.core.Repoisitory;
 using System;
 using System.Collections.Generic;
@@ -55,10 +56,34 @@ namespace messanger.infra.Repoisitory
             }
         }
 
+        public List<message_api> filtermassegdate(message_api msg)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add("m_startdate", msg.senddate, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            parameter.Add("M_enddate", msg.senddate,dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            IEnumerable<message_api> result = dBContext.dbConnection.Query<message_api>("message_package_api.filtermassegdate", parameter, commandType: CommandType.StoredProcedure);
+
+            return result.ToList();
+        }
+
+        public List<message_api> filtermesseg(message_api msg)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add("m_messege", msg.message, dbType: DbType.String, direction: ParameterDirection.Input);
+            IEnumerable<message_api> result = dBContext.dbConnection.Query<message_api>("message_package_api.filtermesseg", parameter, commandType: CommandType.StoredProcedure);
+
+            return result.ToList();
+        }
 
         public List<message_api> GetAllMessage()
         {
             IEnumerable<message_api> result = dBContext.dbConnection.Query<message_api>("message_package_api.GetAllMessage", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<countMessage> GetCountMessage()
+        {
+            IEnumerable<countMessage> result = dBContext.dbConnection.Query<countMessage>("message_package_api.GetCountMessage", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
@@ -70,6 +95,13 @@ namespace messanger.infra.Repoisitory
             IEnumerable<message_api> result = dBContext.dbConnection.Query<message_api>("message_package_api.GetMessageById", parameter, commandType: CommandType.StoredProcedure);
 
             return result.FirstOrDefault();
+        }
+
+        public List<countmessageofeachuser> GettotlMessageEchuser()
+        {
+           
+            IEnumerable<countmessageofeachuser> result = dBContext.dbConnection.Query<countmessageofeachuser>("message_package_api.GettotlMessageEchuser", commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
 
         public string UpDateMessage(message_api upd)

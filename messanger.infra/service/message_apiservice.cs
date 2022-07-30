@@ -1,4 +1,5 @@
 ﻿using messanger.core.Data;
+using messanger.core.Dto;
 using messanger.core.Repoisitory;
 using messanger.core.service;
 using System;
@@ -16,12 +17,22 @@ namespace messanger.infra.service
         }
         public string CreateMessage(message_api ins)
         {
-            return this.CreateMessage(ins);    
+            return message_apirepoisitory.CreateMessage(ins);    
         }
 
         public string DeleteMessage(int id)
         {
-            return this.DeleteMessage(id); 
+            return message_apirepoisitory.DeleteMessage(id); 
+        }
+
+        public List<message_api> filtermassegdate(message_api msg)
+        {
+            return message_apirepoisitory.filtermassegdate(msg);
+        }
+
+        public List<message_api> filtermesseg(message_api msg)
+        {
+            return message_apirepoisitory.filtermesseg(msg);
         }
 
         public List<message_api> GetAllMessage()
@@ -29,9 +40,19 @@ namespace messanger.infra.service
             return message_apirepoisitory.GetAllMessage();      
         }
 
+        public List<countMessage> GetCountMessage()
+        {
+            return message_apirepoisitory.GetCountMessage();
+        }
+
         public message_api GetMessageById(int id)
         {
             return message_apirepoisitory.GetMessageById(id);     
+        }
+
+        public List<countmessageofeachuser> GettotlMessageEchuser()
+        {
+            return message_apirepoisitory.GettotlMessageEchuser();
         }
 
         public string UpDateMessage(message_api upd)

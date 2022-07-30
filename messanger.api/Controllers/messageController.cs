@@ -1,4 +1,5 @@
 ﻿using messanger.core.Data;
+using messanger.core.Dto;
 using messanger.core.service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -48,6 +49,30 @@ namespace messanger.api.Controllers
         public message_api GetMessageById(int id)
         {
             return message_apiservice.GetMessageById(id);
+        }
+        [HttpGet]
+        [Route("GetCountMessage")]
+        public List<countMessage> GetCountMessage()
+        {
+            return message_apiservice.GetCountMessage();
+        }
+        [HttpGet]
+        [Route("GettotlMessageEchuser")]
+        public List<countmessageofeachuser> GettotlMessageEchuser()
+        {
+            return message_apiservice.GettotlMessageEchuser();
+        }
+        [HttpGet]
+        [Route("filtermesseg")]
+        public List<message_api> filtermesseg(message_api msg)
+        {
+            return message_apiservice.filtermesseg(msg);
+        }
+        [HttpGet]
+        [Route("filtermassegdate")]
+        public List<message_api> filtermassegdate(message_api msg)
+        {
+            return message_apiservice.filtermassegdate(msg);
         }
     }
 }
