@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using messanger.core.Data;
 using messanger.core.domain;
+using messanger.core.Dto;
 using messanger.core.Repoisitory;
 using System;
 using System.Collections.Generic;
@@ -47,6 +48,19 @@ namespace messanger.infra.Repoisitory
             IEnumerable<user_api> result = dBContext.dbConnection.Query<user_api>("user_package_api.getbyid", parameter, commandType: CommandType.StoredProcedure);
 
             return result.FirstOrDefault();
+        }
+
+        public List<getcountcuntre> getcountcuntre()
+        {
+            IEnumerable<getcountcuntre> result = dBContext.dbConnection.Query<getcountcuntre>("user_package_api.getcountcuntre", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<getvisaechuser> getvisaechuser()
+        {
+            IEnumerable<getvisaechuser> result = dBContext.dbConnection.Query<getvisaechuser>("user_package_api.getvisaechuser", commandType: CommandType.StoredProcedure);
+
+            return result.ToList();
         }
 
         public string insertuser(user_api ins)

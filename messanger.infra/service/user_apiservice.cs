@@ -1,4 +1,5 @@
 ﻿using messanger.core.Data;
+using messanger.core.Dto;
 using messanger.core.Repoisitory;
 using messanger.core.service;
 using System;
@@ -27,6 +28,16 @@ namespace messanger.infra.service
         public user_api getbyid(int id)
         {
            return user_apiRepoisitory.getbyid(id);  
+        }
+
+        public List<getcountcuntre> getcountcuntre()
+        {
+            return user_apiRepoisitory.getcountcuntre();
+        }
+
+        public List<getvisaechuser> getvisaechuser()
+        {
+            return user_apiRepoisitory.getvisaechuser();
         }
 
         public string insertuser(user_api ins)

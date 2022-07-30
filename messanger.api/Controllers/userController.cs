@@ -1,4 +1,5 @@
 ﻿using messanger.core.Data;
+using messanger.core.Dto;
 using messanger.core.service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -49,5 +50,18 @@ namespace messanger.api.Controllers
         {
             return user_apiservice.getbyid(id);
         }
+        [HttpGet]
+        [Route("getvisaechuser")]
+        public List<getvisaechuser> getvisaechuser()
+        {
+            return user_apiservice.getvisaechuser();
+        }
+        [HttpGet]
+        [Route("getcountcuntre")]
+        public List<getcountcuntre> getcountcuntre()
+        {
+            return user_apiservice.getcountcuntre();
+        }
+        
     }
 }

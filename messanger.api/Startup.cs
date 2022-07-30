@@ -4,6 +4,8 @@ using messanger.core.service;
 using messanger.infra.domain;
 using messanger.infra.Repoisitory;
 using messanger.infra.service;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,9 +14,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace messanger.api
@@ -48,6 +52,7 @@ namespace messanger.api
             services.AddScoped<Iusergroup_apiRepoisitory, usergroup_apiRepoisitory>();
             services.AddScoped< Iservice_apiRepoisitory ,service_apirepoisitory > ();
             services.AddScoped< Isales_apirepoisitory, sales_apirepoisitory > ();
+            services.AddScoped<IJwtRepository, JwtRepository>();
 
 
             services.AddScoped<Icategory_apiservice, category_apiservice>();
@@ -63,18 +68,23 @@ namespace messanger.api
             services.AddScoped<Iusergroup_apirervice, usergroup_apiservice>();
             services.AddScoped<Iservice_apiservice ,service_apiservice > ();
             services.AddScoped<Isales_apiservice, sales_apiservice>();
-
-
-
-
-
-
-
-
-
-
-
-
+            services.AddScoped<IJwtService, JwtService>();
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(y =>
+            {
+                y.RequireHttpsMetadata = false;
+                y.SaveToken = true;
+                y.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("[SECRET USED TO SIGN AND VERIFY JWT TOKENS, IT CAN BE ANY STRING]")),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
 
         }
 
@@ -89,6 +99,7 @@ namespace messanger.api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

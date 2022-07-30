@@ -1,4 +1,5 @@
 ﻿using messanger.core.Data;
+using messanger.core.Dto;
 using messanger.core.Repoisitory;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -48,6 +49,12 @@ namespace messanger.api.Controllers
         public post_api GetpostById(int id)
         {
             return post_apirepoisitory.GetpostById(id);
+        }
+        [HttpGet]
+        [Route("Getnumoflikepost")]
+        public List<Getnumoflikepost> Getnumoflikepost()
+        {
+            return post_apirepoisitory.Getnumoflikepost();
         }
 
     }

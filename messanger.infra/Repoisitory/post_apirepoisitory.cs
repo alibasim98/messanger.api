@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using messanger.core.Data;
 using messanger.core.domain;
+using messanger.core.Dto;
 using messanger.core.Repoisitory;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,12 @@ namespace messanger.infra.Repoisitory
         public List<post_api> GetAllpost()
         {
             IEnumerable<post_api> result = dBContext.dbConnection.Query<post_api>("Post_package_api.GetAllpost", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<Getnumoflikepost> Getnumoflikepost()
+        {
+            IEnumerable<Getnumoflikepost> result = dBContext.dbConnection.Query<Getnumoflikepost>("Post_package_api.Getnumoflikepost", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 

@@ -1,4 +1,5 @@
 ﻿using messanger.core.Data;
+using messanger.core.Dto;
 using messanger.core.Repoisitory;
 using messanger.core.service;
 using System;
@@ -27,6 +28,11 @@ namespace messanger.infra.service
         public List<post_api> GetAllpost()
         {
             return post_apirepoisitory.GetAllpost();    
+        }
+
+        public List<Getnumoflikepost> Getnumoflikepost()
+        {
+            return post_apirepoisitory.Getnumoflikepost();
         }
 
         public post_api GetpostById(int id)
