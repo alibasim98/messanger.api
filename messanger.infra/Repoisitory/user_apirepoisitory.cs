@@ -22,8 +22,15 @@ namespace messanger.infra.Repoisitory
             var parameter = new DynamicParameters();
             parameter.Add("u_usertid", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = dBContext.dbConnection.Execute("user_package_api.deleteuser", parameter, commandType: CommandType.StoredProcedure);
-            
-            return "deleteuser";
+            if (result == null)
+            {
+            return "Notdelete";
+            }
+            else
+            {
+                return "deleted";
+            }
+           
         }
 
         public List<user_api> getalluser()
@@ -53,16 +60,16 @@ namespace messanger.infra.Repoisitory
             parameter.Add("u_Login_id", ins.Login_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = dBContext.dbConnection.ExecuteAsync("user_package_api.insertuser", parameter, commandType: CommandType.StoredProcedure);
 
-            //if (result !=null)
-            //{
+            if (result ==null)
+            {
 
-            //    return "NotInserted";
-            //}
-            //else
-            //{
-            //    return "Inserted";
-            //}
-            return "valed";
+                return "NotInserted";
+            }
+            else
+            {
+                return "Inserted";
+            }
+            
             
         }
        
@@ -77,7 +84,18 @@ namespace messanger.infra.Repoisitory
             parameter.Add("u_Login_id ", upd.Login_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
             var result = dBContext.dbConnection.ExecuteAsync("user_package_api.updateuser", parameter, commandType: CommandType.StoredProcedure);
-            return "Inserted";
+
+            if (result == null)
+            {
+
+                return "Notupdate";
+            }
+            else
+            {
+                return "update";
+            }
+
+           
         }
     }
 }

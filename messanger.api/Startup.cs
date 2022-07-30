@@ -34,9 +34,47 @@ namespace messanger.api
             services.AddControllers();
             services.AddScoped<IDBContext , DbContext>();
 
-            services.AddScoped<Iuser_apiRepoisitory ,user_apirepoisitory > ();
+            
+            services.AddScoped<Icategory_apiRepoisitory, category_apiRepoisitory>();
+            services.AddScoped<Ifrinds_apiRepoisitory, friends_apirepoisitory>();
+            services.AddScoped<Ilikepost_apiRepoisitory, likepost_apirepoisitory>();
+            services.AddScoped<Imessage_apiRepoisitory, message_apirepoisitory>();
+            services.AddScoped<Ipost_apiRepoisitory, post_apirepoisitory>();
+            services.AddScoped<Iuser_apiRepoisitory, user_apirepoisitory>();
+            services.AddScoped<Ivisa_apiRepoisitory, visa_apirepoisitory>();
+            services.AddScoped<Igroup_apirepoisitory, group_apirepoisitory>();
+            services.AddScoped< Ilogins_apiRepoisitory ,logins_apiRepoisitory > ();
+            services.AddScoped< Iroles_api_Repoisitory ,roles_api_Repoisitory > ();
+            services.AddScoped<Iusergroup_apiRepoisitory, usergroup_apiRepoisitory>();
+            services.AddScoped< Iservice_apiRepoisitory ,service_apirepoisitory > ();
+            services.AddScoped< Isales_apirepoisitory, sales_apirepoisitory > ();
 
-            services.AddScoped <  Iuser_apiservice, user_apiservice> ();
+
+            services.AddScoped<Icategory_apiservice, category_apiservice>();
+            services.AddScoped<Ifrinds_apiservice, friends_apiservice>();
+            services.AddScoped<Ilikepost_apiservice, likepost_apiservice>();
+            services.AddScoped<Imessage_apiservice, message_apiservice>();
+            services.AddScoped<Ipost_apiservice, post_apiservice>();
+            services.AddScoped <Iuser_apiservice, user_apiservice> ();
+            services.AddScoped<Ivisa_apiservice, visa_apiservice>();
+            services.AddScoped<Igroup_apiservice, group_apiservice> ();
+            services.AddScoped<Ilogins_apiservice, logins_apiservice>();
+            services.AddScoped< Iroles_api_service ,roles_api_service  > ();
+            services.AddScoped<Iusergroup_apirervice, usergroup_apiservice>();
+            services.AddScoped<Iservice_apiservice ,service_apiservice > ();
+            services.AddScoped<Isales_apiservice, sales_apiservice>();
+
+
+
+
+
+
+
+
+
+
+
+
 
         }
 

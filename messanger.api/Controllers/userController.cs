@@ -21,8 +21,9 @@ namespace messanger.api.Controllers
         {
             return user_apiservice.getalluser();
         }
-        [HttpDelete("{id}")]
-        [Route("delete")]
+
+        [HttpDelete]
+        [Route("delete/{id}")]
         public string deleteuser(int id)
         {
             return user_apiservice.deleteuser(id);
@@ -42,8 +43,8 @@ namespace messanger.api.Controllers
         {
             return user_apiservice.updateuser(cc);
         }
-        [HttpGet("{id}")]
-        [Route("getbyid")]
+        [HttpGet]
+        [Route("getbyid/{id}")]
         public user_api getbyid(int id)
         {
             return user_apiservice.getbyid(id);

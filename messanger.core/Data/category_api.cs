@@ -9,6 +9,6 @@ namespace messanger.core.Data
     {
         [Key]
         public int categoryid { get; set; }
-        public int categoryname {get;set;}
+        public string categoryname {get;set;}
     }
 }
